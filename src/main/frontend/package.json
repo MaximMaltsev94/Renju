@@ -9,7 +9,7 @@
     "watch": "webpack --watch --config webpack.config.watch.js"
   },
   "author": "Maxim Maltsev",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
