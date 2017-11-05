@@ -1,4 +1,4 @@
-import * as constants from '../constants/User'
+import * as constants from '../constants/user.actionTypes'
 const initialState = {
     firstName: 'Maxim',
     lastName: 'Maltsev',

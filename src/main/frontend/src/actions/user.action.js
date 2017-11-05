@@ -1,4 +1,4 @@
-import {SET_AGE} from '../constants/User'
+import {SET_AGE} from '../constants/user.actionTypes'
 
 export function setAge(age) {
     return {
