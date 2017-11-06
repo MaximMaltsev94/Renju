@@ -32,7 +32,7 @@ module.exports = {
             ],
             test: /\.js$/
         }, {
-            test: /\.less$/,
+            test: /\.(less|css)$/,
             use: extractLess.extract({
                 use: [{
                     loader: 'css-loader'

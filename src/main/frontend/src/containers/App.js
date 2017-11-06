@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import User from '../components/User'
-import * as userActions from '../actions/user.action'
+import userActions from '../actions/user.action'
 
 class App extends Component {
     render() {
         const { firstName, age} = this.props.user;
-        const {setAge} = this.props.userActions;
-        return <User name={firstName} setAge={setAge} age={age}/>
+        const setAge = this.props.setAge;
+        const logout = this.props.logout;
+        return <div>
+            <User name={firstName} setAge={setAge} age={age}/>
+            <p>Back to login page</p>
+            <Link to='/'>
+                <button onClick={logout}>Sign out</button>
+            </Link>
+        </div>
     }
 }
 
@@ -20,7 +28,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        userActions: bindActionCreators(userActions, dispatch)
+        setAge: bindActionCreators(userActions.setAge, dispatch),
+        logout: bindActionCreators(userActions.logout, dispatch)
     }
 }
 
