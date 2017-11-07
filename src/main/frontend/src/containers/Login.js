@@ -1,36 +1,51 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
 import userActions from '../actions/user.action'
 
-let Login = props => {
-    const { from } = props.location.state || { from: { pathname: '/lobby' } };
-    const loginSubmit = values => {
-        props.login(values, from);
-    };
-    return <div className='row'>
-        <div className='offset-by-one five columns'>
-            <section>
-                <h5>Want to play without registration?</h5>
-                    <button className='button-primary u-full-width' type='submit'>Play as guest</button>
-            </section>
+class Login extends Component {
+    render() {
+        const {from} = this.props.location.state || {from: {pathname: '/lobby'}};
+        const loginSubmit = values => {
+            this.props.login(values, from);
+        };
+
+        let authError = '';
+        if (this.props.user.errors !== '') {
+            authError = <div className='ui negative message'>
+                <i className='close icon'> </i>
+                <div className='header'>{this.props.user.errors}</div>
+            </div>
+        }
+        return <div className='ui middle aligned centered grid'>
+            <div className='seven wide column'>
+                <div className='ui raised segment'>
+                    <h3 className='ui header'>Want to play without registration?</h3>
+                    <button className='fluid ui button' type='submit'>Play as guest</button>
+                </div>
+            </div>
+            <div className='seven wide column'>
+                <div className='ui raised segment'>
+                    {authError}
+                    <h3 className='ui header'>Allready have an accound?</h3>
+                    <form className='ui form' onSubmit={this.props.handleSubmit(loginSubmit)}>
+                        <div className='field'>
+                            <label htmlFor='username'>User name</label>
+                            <Field id='username' name='username' component='input' type='text'/>
+                        </div>
+                        <div className='field'>
+                            <label htmlFor='password'>Password</label>
+                            <Field id='password' name='password' component='input' type='password'
+                                   className='u-full-width'/>
+                        </div>
+                        <button className='fluid ui button' type='submit'>Log in</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div className='five columns'>
-            <section>
-                <div>{props.user.errors}</div>
-                <h5>Allready have an accound?</h5>
-                <form action='/login' onSubmit={props.handleSubmit(loginSubmit)} method='POST'>
-                    <label htmlFor='username'>User name</label>
-                    <Field id='username' name='username' component='input' type='text' className='u-full-width'/>
-                    <label htmlFor='password'>Password</label>
-                    <Field id='password' name='password' component='input' type='password' className='u-full-width'/>
-                    <button className='button-primary u-full-width' type='submit'>Log in</button>
-                </form>
-            </section>
-        </div>
-    </div>
-};
+    }
+}
 
 function mapStateToProps(state) {
     return {

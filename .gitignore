@@ -26,3 +26,7 @@ nbdist/
 /src/main/frontend/node_modules/
 /src/main/resources/static/css/bundle.css
 /src/main/resources/static/js/bundle.js
+/src/main/resources/static/*.ttf
+/src/main/resources/static/*.eot
+/src/main/resources/static/*.svg
+

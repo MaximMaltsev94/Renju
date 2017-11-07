@@ -14,6 +14,11 @@ module.exports = {
         extractLess,
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        })
     ],
     output: {
         path: __dirname + '/../../../target/classes/static/',
@@ -42,6 +47,9 @@ module.exports = {
                 // use style-loader in development
                 fallback: 'style-loader'
             })
+        }, {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
         }
         ]
     }

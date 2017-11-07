@@ -5,6 +5,8 @@ import {Provider} from 'react-redux'
 import {Router, Route, Switch, } from 'react-router-dom'
 import configureStore from './store/configureStore'
 import './styles/main.less'
+import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min'
 import App from './containers/App'
 import Login from './containers/Login'
 import RequireAuth from './containers/RequireAuth';

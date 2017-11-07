@@ -16,7 +16,7 @@ export default function user(state = initialState, action) {
         case event.LOGIN_FAIL:
             return {...state, errors: action.payload};
         case event.LOGOUT_SUCCESS:
-            return {...state, isAuthenticated: false};
+            return {...state, ...initialState};
         default:
             return state;
     }

@@ -13,6 +13,11 @@ module.exports = {
         extractLess,
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        })
     ],
     output: {
         path: __dirname + '/../resources/static/',
@@ -31,7 +36,7 @@ module.exports = {
             ],
             test: /\.js$/
         }, {
-            test: /\.less$/,
+            test: /\.(less|css)$/,
             use: extractLess.extract({
                 use: [{
                     loader: 'css-loader', options: {minimize: true}
@@ -41,6 +46,9 @@ module.exports = {
                 // use style-loader in development
                 fallback: 'style-loader'
             })
+        }, {
+            test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+            loader: 'url-loader?limit=100000'
         }
         ]
     }

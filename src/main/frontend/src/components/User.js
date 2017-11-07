@@ -9,9 +9,9 @@ export default class User extends Component {
         const {name, age} = this.props;
         return <div>
             <p>Привет, {name}! Твой возраст {age}? Если нет, то выбери свой возраст:</p>
-            <button onClick={::this.onAgeBtnClick}>20</button>
-            <button onClick={::this.onAgeBtnClick}>21</button>
-            <button onClick={::this.onAgeBtnClick}>22</button>
+            <button className='ui button' onClick={::this.onAgeBtnClick}>20</button>
+            <button className='ui button' onClick={::this.onAgeBtnClick}>21</button>
+            <button className='ui button' onClick={::this.onAgeBtnClick}>22</button>
         </div>
     }
 }

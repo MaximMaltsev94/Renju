@@ -10,11 +10,11 @@ class App extends Component {
         const { firstName, age} = this.props.user;
         const setAge = this.props.setAge;
         const logout = this.props.logout;
-        return <div>
+        return <div className='ui raised segment'>
             <User name={firstName} setAge={setAge} age={age}/>
             <p>Back to login page</p>
             <Link to='/'>
-                <button onClick={logout}>Sign out</button>
+                <button className='ui button' onClick={logout}>Sign out</button>
             </Link>
         </div>
     }
